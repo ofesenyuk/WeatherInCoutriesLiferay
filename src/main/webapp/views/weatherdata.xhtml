@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+	<h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+	<h:body>
+	    <h:form>
+		<h:panelGrid columns = "3">
+		        <h:commandButton id = "call" value = "Вызвать веб-сервис (погода в городах)" 
+		            action = "weatherdata" 
+		            actionListener="#{weatherFromNetManagedBean.retrieveDataI}">
+		        </h:commandButton>
+		        <h:commandButton id = "read" value = "Считать из базы" 
+		            action = "weatherdata"  actionListener="#{weatherFromNetManagedBean.retrieveDataFromDB}">
+		        </h:commandButton>
+		        <h:commandButton id = "save" value = "Сохранить в базу" 
+		            action = "weatherdata" actionListener="#{weatherFromNetManagedBean.saveDataToDB}">
+		        </h:commandButton>
+		</h:panelGrid>
+		<h:outputText value="Погода в городах." />
+		<br/>
+		<h:outputText value="#{weatherFromNetManagedBean.isDataFullMessage}"/>
+		<h:dataTable id = "tab" value="#{weatherFromNetManagedBean.weatherStates}" var = "weather"
+		    styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Местоположение"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.location}"></h:outputText>
+		    </h:column> 
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Время"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.time}"></h:outputText>
+		    </h:column>
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Точка росы"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.dewPoint}"></h:outputText>
+		    </h:column>
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Температура"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.temperature}"></h:outputText>
+		    </h:column>
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Давление"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.pressure}"></h:outputText>
+		    </h:column>		    
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Относительная влажность"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.relativeHumidity}"></h:outputText>
+		    </h:column>   
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Видимость"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.visibility}"></h:outputText>
+		    </h:column>   
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Состояние"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.status}"></h:outputText>
+		    </h:column>
+		</h:dataTable>
+		</h:form>
+	</h:body>
+</html>

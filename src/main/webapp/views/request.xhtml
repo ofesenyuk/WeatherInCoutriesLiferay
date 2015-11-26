@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+	<h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+	<h:body>
+		<h:outputText value="Погода в городах страны #{locationManagedBean.country}" />
+		<h:form>
+		<h:panelGrid columns = "2">
+		        <h:commandButton id = "call" value = "Вызвать веб-сервис (погода в городах)" 
+		            action = "weatherdata" 
+		            actionListener="#{weatherFromNetManagedBean.retrieveDataI}">
+		        </h:commandButton>
+		        <h:commandButton id = "read" value = "Считать из базы" 
+		            action = "weatherdata"  
+		            actionListener="#{weatherFromNetManagedBean.retrieveDataFromDB}">
+		        </h:commandButton>
+		</h:panelGrid>
+		<h:dataTable value="#{locationManagedBean.cities}" var = "cit"
+		    styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Города страны #{locationManagedBean.country}"></h:outputText></f:facet>
+		        <h:outputText value="#{cit}"></h:outputText>
+		    </h:column>
+		</h:dataTable>
+		</h:form>
+	</h:body>
+</html>

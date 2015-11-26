@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+	<h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+	<h:body>
+		<h:outputText value="Погода в городах" />
+		<h:dataTable value="#{weatherFromNetManagedBean.weatherStates}" var = "weather"
+		    styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Местоположение"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.location}"></h:outputText>
+		    </h:column>
+		    <h:column>
+		        <f:facet name="header"><h:outputText value="Точка росы"></h:outputText></f:facet>
+		        <h:outputText value="#{weather.dewPoint}"></h:outputText>
+		    </h:column>
+		</h:dataTable>
+	</h:body>
+</html>

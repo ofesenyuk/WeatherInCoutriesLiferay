@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<f:view
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+	<h:head />
+	<h:body>
+		<h:outputText value="Определение страны" />
+		<br/>
+		<h:outputText value="#{locationManagedBean.isCountriesListFullMessage}" />
+		<h:form>
+		    <h:panelGrid columns = "2">
+		        <h:outputLabel value="Страна " for="country"/> 
+		        <h:selectOneMenu id = "country" label = "Country" 
+		            required="true"
+		            value = "#{locationManagedBean.country}"> 
+		            <f:selectItem itemValue = "" 
+		                itemLabel = "-- Пожалуйста, выберите страну --">
+		            </f:selectItem>
+		            <f:selectItems value = "#{locationManagedBean.countries}">
+		            </f:selectItems>
+		        </h:selectOneMenu>
+		        <h:message for="country"></h:message>
+		        <h:panelGroup></h:panelGroup>
+		        <h:commandButton id = "confirm" value = "Выбрать" 
+		            action = "request"></h:commandButton>
+		    </h:panelGrid>
+		    
+		     
+		</h:form>
+	</h:body>
+</f:view>
